@@ -1,0 +1,1 @@
+- use camelCase for variables

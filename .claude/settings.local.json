@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(node index.js:*)",
+      "Bash(npm run dev:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: Weather dashboard app with React and Node.js\n\n- React frontend with Vite for weather dashboard UI\n- Node.js/Express backend API with mock weather data\n- Support for 5 cities (New York, London, Tokyo, Paris, Sydney)\n- Responsive design with gradient background\n- Display temperature, conditions, humidity, and wind speed\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
