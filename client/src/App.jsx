@@ -7,6 +7,7 @@ function App() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isCelsius, setIsCelsius] = useState(false);
 
   const apiUrl = 'http://localhost:3001/api';
 
@@ -51,6 +52,19 @@ function App() {
     fetchWeather(cityName);
   };
 
+  const convertToC = (fahrenheit) => {
+    return Math.round((fahrenheit - 32) * 5 / 9);
+  };
+
+  const getDisplayTemperature = () => {
+    if (!weatherData) return 0;
+    return isCelsius ? convertToC(weatherData.temperature) : weatherData.temperature;
+  };
+
+  const toggleUnit = () => {
+    setIsCelsius(!isCelsius);
+  };
+
   return (
     <div className="app">
       <header className="header">
@@ -73,6 +87,21 @@ function App() {
           </select>
         </div>
 
+        <div className="unit-toggle">
+          <button
+            className={`unit-button ${!isCelsius ? 'active' : ''}`}
+            onClick={toggleUnit}
+          >
+            °F
+          </button>
+          <button
+            className={`unit-button ${isCelsius ? 'active' : ''}`}
+            onClick={toggleUnit}
+          >
+            °C
+          </button>
+        </div>
+
         {loading && <div className="loading">Loading...</div>}
 
         {error && <div className="error">{error}</div>}
@@ -81,7 +110,7 @@ function App() {
           <div className="weather-card">
             <div className="weather-icon">{weatherData.icon}</div>
             <h2 className="city-name">{weatherData.city}</h2>
-            <div className="temperature">{weatherData.temperature}°F</div>
+            <div className="temperature">{getDisplayTemperature()}°{isCelsius ? 'C' : 'F'}</div>
             <div className="condition">{weatherData.condition}</div>
 
             <div className="details">
